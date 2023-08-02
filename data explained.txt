@@ -1,16 +1,16 @@
 ---------------- Data Explanation ----------------
 
 Subject: 1487
-------------
+--------------
 As we can see in the X-Y plot of subject 1487 all of it's devices samples are monotonic.
 
-From the covariance matrix of subject 1487 we can learn that the diagonal is dominant and therefore the devices' behavior is distinctly different from each other and theyDO NOT share common pattern or trends
+From the covariance matrix of subject 1487 we can learn that the diagonal is dominant and therefore the devices' behavior is distinctly different from each other and they NOT share common pattern or trends
 
 In addition, because of low number of devices scanning subject number 1487 we can not asure by the regression graph and by the calculation of the R-squared value which device is a better match for our standards
 
 
 Subject: 1488
-------------
+--------------
 As we can see in the X-Y plot of subject 1488 all of it's devices samples are monotonic.
 
 From the covariance matrix of subject 1488 we can learn that the diagonal is not dominant and therefore the devices' behavior is not distinctly different from each other and they share common pattern or trends
@@ -19,134 +19,134 @@ In addition, because of low number of devices scanning subject number 1488 we ca
 
 
 Subject: 1491
-------------
+--------------
 As we can see in the X-Y plot of subject 1491 not all of it's devices samples are monotonic. The not monotonic devices are: 49  
 
 From the covariance matrix of subject 1491 we can learn that the diagonal is not dominant and therefore the devices' behavior is not distinctly different from each other and they share common pattern or trends
 
-In addition, as we can see in subject's 1491 regression graph and after calculating the R-squared value(0.9982004822829225)
+In addition, as we can see in subject's 1491 regression graph and after calculating the R-squared value (0.9982004822829225)
 we can determine by this test that device 1 is the closest to the regression line and most likely to match our standards
 
 
 Subject: 1492
-------------
+--------------
 As we can see in the X-Y plot of subject 1492 all of it's devices samples are monotonic.
 
-From the covariance matrix of subject 1492 we can learn that the diagonal is dominant and therefore the devices' behavior is distinctly different from each other and theyDO NOT share common pattern or trends
+From the covariance matrix of subject 1492 we can learn that the diagonal is dominant and therefore the devices' behavior is distinctly different from each other and they NOT share common pattern or trends
 
 In addition, because of low number of devices scanning subject number 1492 we can not asure by the regression graph and by the calculation of the R-squared value which device is a better match for our standards
 
 
 Subject: 1493
-------------
+--------------
 As we can see in the X-Y plot of subject 1493 not all of it's devices samples are monotonic. The not monotonic devices are: 33  39  
 
 From the covariance matrix of subject 1493 we can learn that the diagonal is not dominant and therefore the devices' behavior is not distinctly different from each other and they share common pattern or trends
 
-In addition, as we can see in subject's 1493 regression graph and after calculating the R-squared value(0.9614465014891607)
+In addition, as we can see in subject's 1493 regression graph and after calculating the R-squared value (0.9614465014891607)
 we can determine by this test that device 17 is the closest to the regression line and most likely to match our standards
 
 
 Subject: 1494
-------------
+--------------
 As we can see in the X-Y plot of subject 1494 not all of it's devices samples are monotonic. The not monotonic devices are: 41  45  
 
 From the covariance matrix of subject 1494 we can learn that the diagonal is not dominant and therefore the devices' behavior is not distinctly different from each other and they share common pattern or trends
 
-In addition, as we can see in subject's 1494 regression graph and after calculating the R-squared value(0.9875000198286488)
+In addition, as we can see in subject's 1494 regression graph and after calculating the R-squared value (0.9875000198286488)
 we can determine by this test that device 48 is the closest to the regression line and most likely to match our standards
 
 
 Subject: 1495
-------------
+--------------
 As we can see in the X-Y plot of subject 1495 not all of it's devices samples are monotonic. The not monotonic devices are: 22  47  
 
 From the covariance matrix of subject 1495 we can learn that the diagonal is not dominant and therefore the devices' behavior is not distinctly different from each other and they share common pattern or trends
 
-In addition, as we can see in subject's 1495 regression graph and after calculating the R-squared value(0.9906641201207756)
+In addition, as we can see in subject's 1495 regression graph and after calculating the R-squared value (0.9906641201207756)
 we can determine by this test that device 50 is the closest to the regression line and most likely to match our standards
 
 
 Subject: 1496
-------------
+--------------
 As we can see in the X-Y plot of subject 1496 not all of it's devices samples are monotonic. The not monotonic devices are: 18  
 
 From the covariance matrix of subject 1496 we can learn that the diagonal is not dominant and therefore the devices' behavior is not distinctly different from each other and they share common pattern or trends
 
-In addition, as we can see in subject's 1496 regression graph and after calculating the R-squared value(0.9881154695535577)
+In addition, as we can see in subject's 1496 regression graph and after calculating the R-squared value (0.9881154695535577)
 we can determine by this test that device 25 is the closest to the regression line and most likely to match our standards
 
 
 Subject: 1497
-------------
+--------------
 As we can see in the X-Y plot of subject 1497 not all of it's devices samples are monotonic. The not monotonic devices are: 19  
 
 From the covariance matrix of subject 1497 we can learn that the diagonal is not dominant and therefore the devices' behavior is not distinctly different from each other and they share common pattern or trends
 
-In addition, as we can see in subject's 1497 regression graph and after calculating the R-squared value(0.9892066113730448)
+In addition, as we can see in subject's 1497 regression graph and after calculating the R-squared value (0.9892066113730448)
 we can determine by this test that device 40 is the closest to the regression line and most likely to match our standards
 
 
 Subject: 1498
-------------
+--------------
 As we can see in the X-Y plot of subject 1498 not all of it's devices samples are monotonic. The not monotonic devices are: 6  43  
 
 From the covariance matrix of subject 1498 we can learn that the diagonal is not dominant and therefore the devices' behavior is not distinctly different from each other and they share common pattern or trends
 
-In addition, as we can see in subject's 1498 regression graph and after calculating the R-squared value(0.9950344794957512)
+In addition, as we can see in subject's 1498 regression graph and after calculating the R-squared value (0.9950344794957512)
 we can determine by this test that device 16 is the closest to the regression line and most likely to match our standards
 
 
 Subject: 1499
-------------
+--------------
 As we can see in the X-Y plot of subject 1499 not all of it's devices samples are monotonic. The not monotonic devices are: 51  
 
-From the covariance matrix of subject 1499 we can learn that the diagonal is dominant and therefore the devices' behavior is distinctly different from each other and theyDO NOT share common pattern or trends
+From the covariance matrix of subject 1499 we can learn that the diagonal is dominant and therefore the devices' behavior is distinctly different from each other and they NOT share common pattern or trends
 
 In addition, because of low number of devices scanning subject number 1499 we can not asure by the regression graph and by the calculation of the R-squared value which device is a better match for our standards
 
 
 Subject: 1500
-------------
+--------------
 As we can see in the X-Y plot of subject 1500 not all of it's devices samples are monotonic. The not monotonic devices are: 44  
 
-From the covariance matrix of subject 1500 we can learn that the diagonal is dominant and therefore the devices' behavior is distinctly different from each other and theyDO NOT share common pattern or trends
+From the covariance matrix of subject 1500 we can learn that the diagonal is dominant and therefore the devices' behavior is distinctly different from each other and they NOT share common pattern or trends
 
 In addition, because of low number of devices scanning subject number 1500 we can not asure by the regression graph and by the calculation of the R-squared value which device is a better match for our standards
 
 
 Subject: 1501
-------------
+--------------
 As we can see in the X-Y plot of subject 1501 not all of it's devices samples are monotonic. The not monotonic devices are: 12  
 
-From the covariance matrix of subject 1501 we can learn that the diagonal is dominant and therefore the devices' behavior is distinctly different from each other and theyDO NOT share common pattern or trends
+From the covariance matrix of subject 1501 we can learn that the diagonal is dominant and therefore the devices' behavior is distinctly different from each other and they NOT share common pattern or trends
 
 In addition, because of low number of devices scanning subject number 1501 we can not asure by the regression graph and by the calculation of the R-squared value which device is a better match for our standards
 
 
 Subject: 1503
-------------
+--------------
 As we can see in the X-Y plot of subject 1503 all of it's devices samples are monotonic.
 
-From the covariance matrix of subject 1503 we can learn that the diagonal is dominant and therefore the devices' behavior is distinctly different from each other and theyDO NOT share common pattern or trends
+From the covariance matrix of subject 1503 we can learn that the diagonal is dominant and therefore the devices' behavior is distinctly different from each other and they NOT share common pattern or trends
 
 In addition, because of low number of devices scanning subject number 1503 we can not asure by the regression graph and by the calculation of the R-squared value which device is a better match for our standards
 
 
 Subject: 1510
-------------
+--------------
 As we can see in the X-Y plot of subject 1510 not all of it's devices samples are monotonic. The not monotonic devices are: 29  
 
-From the covariance matrix of subject 1510 we can learn that the diagonal is dominant and therefore the devices' behavior is distinctly different from each other and theyDO NOT share common pattern or trends
+From the covariance matrix of subject 1510 we can learn that the diagonal is dominant and therefore the devices' behavior is distinctly different from each other and they NOT share common pattern or trends
 
 In addition, because of low number of devices scanning subject number 1510 we can not asure by the regression graph and by the calculation of the R-squared value which device is a better match for our standards
 
 
 Subject: 2004
-------------
+--------------
 As we can see in the X-Y plot of subject 2004 all of it's devices samples are monotonic.
 
-From the covariance matrix of subject 2004 we can learn that the diagonal is dominant and therefore the devices' behavior is distinctly different from each other and theyDO NOT share common pattern or trends
+From the covariance matrix of subject 2004 we can learn that the diagonal is dominant and therefore the devices' behavior is distinctly different from each other and they NOT share common pattern or trends
 
 In addition, because of low number of devices scanning subject number 2004 we can not asure by the regression graph and by the calculation of the R-squared value which device is a better match for our standards
 
