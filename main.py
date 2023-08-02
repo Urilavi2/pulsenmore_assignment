@@ -30,15 +30,23 @@ def read_from_file(path):
 
 
 def shallow_analysis(arr):
+    path = "./data content description.txt"
+    f = open(path, 'w')
+    f.write("-------------- Shallow Analysis --------------\n\n")
     devices = len(arr)
-    print("\nNumber of devices: " + str(devices) + '\n')
+    f.write("Number of devices: " + str(devices) + '\n\n')
     subjects = arr[:, 0]
     data = arr[:, range(2, 9, 2)]
     unique_values = np.unique(subjects)
     bad_samples = data == '[]'
-    print("The subjects: \n", unique_values, '\n')
-    print("Number of malfunctioning devices: ", int(bad_samples.sum() / 4), '\n')  # divide by 4 due to 4 samples
-    print("Number of bad samples: ", bad_samples.sum(), '\n')
+    bad_devices = data[:, 2] == '[]'
+    f.write("The subjects: \n" + str(unique_values.tolist()) + '\n\n')
+    f.write("Number of malfunctioning devices: " + str(bad_devices.sum()) + '\n')
+    f.write("and the devices are: ")
+    for device in range(0, len(bad_devices)):
+        if bad_devices[device]:
+            f.write(str(int(device) + 1) + ' ')
+    f.write("\n\nNumber of bad samples: " + str(bad_samples.sum()) + '\n')
 
 
 def Data_loading_and_Explain():
@@ -138,10 +146,13 @@ def plot_regression():
 def Data_Visualization():
     path = "./data explained.txt"
     f = open(path, 'w')
+    f.write("---------------- Data Explanation ----------------\n\n")
     mono_arr = plot_XY()
     min_quad = plot_regression()
     subjects_keys = min_quad.keys()
     for subject in subjects_keys:
+        f.write("Subject: " + subject + '\n')
+        f.write("--------------\n")
         if not((mono_arr[subject] == True).all()):
             non_mono_idx = np.where(mono_arr[subject] == False)[0]
             string_mono = "As we can see in the X-Y plot of subject " + subject + " not all of it's devices samples are" \
@@ -151,16 +162,28 @@ def Data_Visualization():
         else:
             string_mono = "As we can see in the X-Y plot of subject " + subject + " all of it's devices samples are" \
                           " monotonic."
-        f.write(string_mono)
+        f.write(string_mono + '\n\n')
+
+        cov_diagonal_dominance = cov_analayzer(subject)
+        if cov_diagonal_dominance:
+            string_cov = "From the covariance matrix of subject " + subject + " we can learn that the diagonal is " \
+                        "dominant and therefore the devices' behavior is distinctly different from each other and they" \
+                                                                             "DO NOT share common pattern or trends"
+        else:
+            string_cov = "From the covariance matrix of subject " + subject + " we can learn that the diagonal is not " \
+                          "dominant and therefore the devices' behavior is not distinctly different from each other" \
+                          " and they share common pattern or trends"
+        f.write(string_cov + '\n\n')
+
         if len(subjects_devices_hash[subject]) < 3:
-            string_reg = "Because of low number of devices scanning subject number " + subject + " we can not asure by the regression " \
+            string_reg = "In addition, because of low number of devices scanning subject number " + subject + " we can not asure by the regression " \
                      "graph and by the calculation of the R-squared value which device is a better match for our standards"
         else:
-            string_reg = "As we can see in subject's " + subject + " regression graph and after calculating the R-squared value" \
+            string_reg = "In addition, as we can see in subject's " + subject + " regression graph and after calculating the R-squared value" \
                      + '(' + str(1-min_quad[subject][0]) + ")\nwe can determine by this test that device " \
                      + str(min_quad[subject][1]) + " is the closest to the regression line and most likely to match our standards"
 
-        f.write(string_reg)
+        f.write(string_reg + '\n\n\n')
 
 
 # ------------ end of Data visualization ---------------
@@ -224,6 +247,16 @@ def pearson_correlation_coefficient(subject):
         pearson_correlation[deviceX] = np.array(pearson_correlation[deviceX])
     return pearson_correlation, devices_correlated
 
+
+def cov_analayzer(subject):
+    covariance_mat = covariance(subject)
+    if covariance_mat.size > 1:
+        num_devices = covariance_mat.shape[0]
+        vars = np.diagonal(covariance_mat)
+        covs = covariance_mat - np.diag(vars)
+        is_diagonal_dominant = np.all(vars > np.sum(np.abs(covs), axis=1))
+        return is_diagonal_dominant
+    return True
 
 def sst(mean, samples):
     """
@@ -341,7 +374,29 @@ def cross_correlation(subject, subject_arr, devices_arr):
 def is_monotonic(values):
     return np.allclose(values, sorted(values)) or np.allclose(values, sorted(values, reverse=True))
 
+
+def correl_analyze_new_devices(cross, auto):
+    scoreboard = 0
+    max_auto_idx = np.argmax(auto[-1])
+    if max_auto_idx == 2:
+        scoreboard += 1  # compared to other devices, they both have the max val of auto-corr in the third index
+    if len(cross) > 1:
+        # print("only relevant: \n", relevant_cross)
+        relevant_cross = cross[:, -1, :]
+        max_vals = np.max(relevant_cross, axis=1)
+        third_col_values = relevant_cross[:, 2]
+        if np.array_equal(max_vals, third_col_values):
+            scoreboard += 1  # compared to other devices, they both have the max val of cross-corr in the third index
+
+        for row in relevant_cross:
+            if is_monotonic(row[:-1]):
+                scoreboard += 1  # compared to other devices, they both have monotonic behavior in the first 3 crosses
+                if row[-1] < row[-2]:
+                    scoreboard += 1 # compared to other devices, the last cross always has lower value then the third one
+    return scoreboard
+
 # ------------ end of Data Processing ---------------
+
 
 # ------------ Data Exploration ---------------
 
@@ -353,7 +408,6 @@ def new_devices():
     path = "./new_devices.csv"
     headers_load, np_data_load = read_from_file(path)
     subjects = np_data_load[:, 1]
-    temp_data = np_data_load[:, 2:]
     new_devices_score = {}
     new_sub_hash = {}
     new_sub_device_hash = {}
@@ -371,18 +425,27 @@ def new_devices():
         else:
             new_devices_score[subject] = 0
 
+        if is_monotonic(new_sub_hash[subject]):
+            # if the test is monotonic, it is more likely that its part of the sample group, as most of it is
+            new_devices_score[subject] += 1
+
+
         cross, auto, device_corr = cross_correlation(subject, united_subject_hash[subject], united_devices_hash[subject])
-        cross_vals = [val for val in cross.values()]
+        cross_vals = np.array([val for val in cross.values()])
         auto_vals = [val for val in auto.values()]
         dev_vals = [val for val in device_corr.values()]
-        print('correlation of ' + subject + ' :')
-        print("cross:")
-        print(cross_vals)
-        print("auto:")
-        print(auto_vals)
-        print("devices correlated order:")
-        print(dev_vals)
-    # NEED TO COMPARE THE DATA OF THIS TEST TO THE OTHER SAMPLES
+        new_devices_score[subject] += correl_analyze_new_devices(cross_vals, auto_vals)
+    sorted_scores = sorted(new_devices_score.items(), key=lambda x: x[1])
+    # Extract sorted keys and values from the sorted items
+    sorted_keys = [score[0] for score in sorted_scores]
+    sorted_values = [score[1] for score in sorted_scores]
+    # CONCLUSION
+    path = "./new_devices_ranked.txt"
+    f = open(path, 'w')
+    f.write("------------ New Devices Conclusions ------------\n\n")
+    for idx, key in enumerate(sorted_keys):
+        f.write("Device number " + str(new_sub_device_hash[key]) + " is ranked " + str(idx + 1) + " based on probability"
+                                                          " to be part of the sample group from the new devices \n\n")
 
 # --------------------------- DATA STRUCTURE ------------------------------
 

@@ -1,0 +1,8 @@
+------------ New Devices Conclusions ------------
+
+Device number 52 is ranked 1 based on probability to be part of the sample group from the new devices 
+
+Device number 53 is ranked 2 based on probability to be part of the sample group from the new devices 
+
+Device number 54 is ranked 3 based on probability to be part of the sample group from the new devices 
+

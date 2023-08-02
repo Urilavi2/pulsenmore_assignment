@@ -1,0 +1,11 @@
+-------------- Shallow Analysis --------------
+
+Number of devices: 51
+
+The subjects: 
+['1487', '1488', '1491', '1492', '1493', '1494', '1495', '1496', '1497', '1498', '1499', '1500', '1501', '1503', '1510', '2004']
+
+Number of malfunctioning devices: 4
+and the devices are: 2 4 8 10 
+
+Number of bad samples: 16
