@@ -26,6 +26,7 @@ def read_from_file(path):
             break
         else:
             data.append(line[:-1].split(','))  # remove the last element in line: '\n'
+    f.close()
     return headers, np.array(data, dtype='str')
 
 
@@ -47,6 +48,7 @@ def shallow_analysis(arr):
         if bad_devices[device]:
             f.write(str(int(device) + 1) + ' ')
     f.write("\n\nNumber of bad samples: " + str(bad_samples.sum()) + '\n')
+    f.close()
 
 
 def Data_loading_and_Explain():
@@ -73,10 +75,6 @@ def plot_XY():
         devices_idx = 0
         mono[subject] = []
         for devices_tests in subject_samples:
-            # if (devices_tests == '[]').any():
-            #     ax.plot(x_axis, np.zeros(4), label="device " + str(devices[devices_idx]))
-            #     devices_idx += 1
-            #     continue
             mono[subject].append(is_monotonic(devices_tests))
             ax.plot(x_axis, devices_tests.astype(float), label="device " + str(devices[devices_idx]), marker='o', markersize=8)
             devices_idx += 1
@@ -98,17 +96,13 @@ def plot_regression():
      """
 
     min_err_per_sub = {}
-    # path = "./regression data.txt"
-    # f = open(path, 'w')
-    # save the quadratic errors from devices for each subject
+
     for subject in subjects_hash:
         subject_arr = subjects_hash[subject]
         devices = subjects_devices_hash[subject]
         fig, ax = plt.subplots()
         x_avg = np.mean(x_axis)
         min_err = (999, 0)  # (value, device num)
-        # f.write("For test subject: " + str(subject) + '\n')
-        # print("\nFor test subject: " + str(subject))
         denominator = sum((xi - x_avg) ** 2 for xi in x_axis)
         for device_idx, samples in enumerate(subject_arr):
             samples_avg = np.mean(samples)
@@ -118,10 +112,6 @@ def plot_regression():
             quadratic_err = ssres(beta0, beta1, samples) / sst(samples_avg, samples)
             if quadratic_err < min_err[0]:
                 min_err = (quadratic_err, devices[device_idx])
-            # f.write("the quadratic error of device " + str(devices[device_idx]) +
-            #         " from the regression line: " + str(quadratic_err) + '\n')
-            # print("the quadratic error of device " + str(devices[device_idx]) +
-            #         " from the regression line: " + str(quadratic_err))
             # Plotting the data points
             ax.scatter(x_axis, samples, label='Device ' + str(devices[device_idx]))
             # Plotting the regression line
@@ -132,14 +122,6 @@ def plot_regression():
         ax.set_title("subject " + str(subject) + " Regression Graph")
         plt.show()
         min_err_per_sub[subject] = min_err
-        # f.write("Therefore, the device with the least squared error is: " + str(min_err[1]) +
-        #         '\nand the error is: ' + str(min_err[0]) + '\n')
-        # print("Therefore, the device with the least squared error is: " + str(min_err[1]) +
-        #         '\nand the error is: ' + str(min_err[0]))
-        # if len(subject_arr) < 3:
-        #     f.write("NOTICE THAT THERE IS AN INSUFFICIENT NUMBER OF TESTS! therefore this test isn't satisfying\n")
-        #     print("NOTICE THAT THERE IS AN INSUFFICIENT NUMBER OF TESTS! therefore this test isn't satisfying\n")
-        # f.write('\n')
     return min_err_per_sub
 
 
@@ -184,6 +166,7 @@ def Data_Visualization():
                      + str(min_quad[subject][1]) + " is the closest to the regression line and most likely to match our standards"
 
         f.write(string_reg + '\n\n\n')
+    f.close()
 
 
 # ------------ end of Data visualization ---------------
@@ -215,11 +198,6 @@ def pearson_correlation_coefficient(subject):
     for deviceX_idx in range(0, len(devices_samples)):
         deviceX = devices_arr[deviceX_idx]
         deviceX_data = devices_samples[deviceX_idx]
-        # if (deviceX_data == '[]').any():
-        #     continue
-        # else:
-        #     pearson_correlation[deviceX] = []
-        #     devices_correlated[deviceX] = []
         pearson_correlation[deviceX] = []
         devices_correlated[deviceX] = []
         for deviceY_idx in range(0, len(devices_samples)):
@@ -227,8 +205,6 @@ def pearson_correlation_coefficient(subject):
             if deviceX == deviceY:
                 continue
             deviceY_data = devices_samples[deviceY_idx]
-            # if (deviceY_data == '[]').any():
-            #     continue
             n = len(deviceX_data)
             deviceX_data = devices_samples[deviceX_idx].astype(float)
             deviceY_data = devices_samples[deviceY_idx].astype(float)
@@ -344,8 +320,6 @@ def cross_correlation(subject, subject_arr, devices_arr):
     cross_correlation = {}
     devices_correlated = {}
     auto_correlation = {}
-    # subject_arr = subjects_hash[subject]
-    # devices_arr = subjects_devices_hash[subject]
     for deviceX_idx in range(0, (len(subject_arr))):
         deviceX = devices_arr[deviceX_idx]
         deviceX_data = subject_arr[deviceX_idx]
@@ -446,6 +420,7 @@ def new_devices():
     for idx, key in enumerate(sorted_keys):
         f.write("Device number " + str(new_sub_device_hash[key]) + " is ranked " + str(idx + 1) + " based on probability"
                                                           " to be part of the sample group from the new devices \n\n")
+    f.close()
 
 # --------------------------- DATA STRUCTURE ------------------------------
 
