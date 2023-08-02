@@ -1,4 +1,4 @@
-# Pulsenmore Pssignment
+# Pulsenmore Assignment
 
 The assignment is mentioned and previewed in Assignment.pdf.
 Assumptions:
