@@ -168,7 +168,7 @@ def Data_Visualization():
         if cov_diagonal_dominance:
             string_cov = "From the covariance matrix of subject " + subject + " we can learn that the diagonal is " \
                         "dominant and therefore the devices' behavior is distinctly different from each other and they" \
-                                                                             "DO NOT share common pattern or trends"
+                                                                             " NOT share common pattern or trends"
         else:
             string_cov = "From the covariance matrix of subject " + subject + " we can learn that the diagonal is not " \
                           "dominant and therefore the devices' behavior is not distinctly different from each other" \
@@ -180,7 +180,7 @@ def Data_Visualization():
                      "graph and by the calculation of the R-squared value which device is a better match for our standards"
         else:
             string_reg = "In addition, as we can see in subject's " + subject + " regression graph and after calculating the R-squared value" \
-                     + '(' + str(1-min_quad[subject][0]) + ")\nwe can determine by this test that device " \
+                     + ' (' + str(1-min_quad[subject][0]) + ")\nwe can determine by this test that device " \
                      + str(min_quad[subject][1]) + " is the closest to the regression line and most likely to match our standards"
 
         f.write(string_reg + '\n\n\n')
